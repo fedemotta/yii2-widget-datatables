@@ -1,0 +1,33 @@
+{
+    "name": "fedemotta/yii2-widget-datatables",
+    "description": "DataTables widget for Yii2",
+    "type": "yii2-extension",
+    "minimum-stability": "stable",
+    "keywords": ["yii2","extension","jquery","datatables","table","javascript","library"],
+    "license": "MIT",
+    "support": {
+        "issues": "https://github.com/fedemotta/yii2-widget-datatables/issues?state=open",
+        "source": "https://github.com/fedemotta/yii2-widget-datatables"
+    },
+    "authors": [
+        {
+            "name": "Federico Nicolás Motta",
+            "email": "fedemotta@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2":"*",
+        "bower-asset/jquery":">= 1.7.0",
+        "bower-asset/datatables":"*"
+    },
+    "autoload": {
+        "psr-4": {
+            "fedemotta\\datatables\\": ""
+        }
+    },
+    "extra": {
+        "asset-installer-paths": {
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
