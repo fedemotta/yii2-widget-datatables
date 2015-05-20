@@ -13,7 +13,7 @@ use yii\helpers\Json;
  * Datatables Yii2 widget
  * @author Federico Nicolás Motta <fedemotta@gmail.com>
  */
-class DataTables extends yii\grid\GridView
+class DataTables extends \yii\grid\GridView
 {
     /**
      * @var array the HTML attributes for the widget main container tag.
