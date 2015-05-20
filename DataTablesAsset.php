@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
  * Asset for the DataTables JQuery plugin
  * @author Federico Nicolás Motta <fedemotta@gmail.com>
  */
-class GridstackAsset extends AssetBundle 
+class DataTablesAsset extends AssetBundle 
 {
     public $sourcePath = '@bower/datatables'; 
 
