@@ -49,6 +49,6 @@ class DataTables extends \yii\grid\GridView
         $view = $this->getView();
         $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : Json::encode([]);
         DataTablesAsset::register($view);
-        $view->registerJs("jQuery('#$id').datatables($options);");
+        $view->registerJs("jQuery('#$id').Datatable($options);");
     }
 }
