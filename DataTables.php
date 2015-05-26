@@ -7,6 +7,7 @@
  */
 namespace fedemotta\datatables;
 
+use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -23,7 +24,11 @@ class DataTables extends \yii\grid\GridView
      */
     public function run()
     {
-        $id = $this->tableOptions['id'];
+        if (isset($this->tableOptions['id'])) {
+            $id = $this->tableOptions['id'];
+        } else {
+            throw new InvalidConfigException('No table ID provided.');
+        }
         $options = Json::encode($this->getClientOptions());
         $view = $this->getView();
         DataTablesAsset::register($view);
