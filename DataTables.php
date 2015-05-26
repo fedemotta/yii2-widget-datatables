@@ -8,6 +8,9 @@
 namespace fedemotta\datatables;
 
 use yii\helpers\Json;
+use yii\helpers\ArrayHelper;
+use yii\helpers\Html;
+
 
 /**
  * Datatables Yii2 widget
@@ -16,39 +19,27 @@ use yii\helpers\Json;
 class DataTables extends \yii\grid\GridView
 {
     /**
-     * @var array the HTML attributes for the widget main container tag.
-     */
-    public $options = [];
-    
-    /**
-     * @var array the options for the DataTables widget.
-     */
-    public $clientOptions = [];
-    
-    
-    /**
-     * Initializes the widget.
-     * This method will register the bootstrap asset bundle. If you override this method,
-     * make sure you call the parent implementation first.
-     */
-    public function init()
-    {
-        parent::init();
-        if (!isset($this->options['id'])) {
-            $this->options['id'] = $this->getId();
-        }
-    }
-    /**
      * Runs the widget.
-     * This registers the necessary javascript code and renders the datatables
      */
     public function run()
     {
-        parent::run();
         $id = $this->options['id'];
+        $options = Json::encode($this->getClientOptions());
         $view = $this->getView();
-        $options = !empty($this->clientOptions) ? Json::encode($this->clientOptions) : Json::encode([]);
         DataTablesAsset::register($view);
         $view->registerJs("jQuery('#$id').Datatable($options);");
+        
+        //base list view run
+        if ($this->showOnEmpty || $this->dataProvider->getCount() > 0) {
+            $content = preg_replace_callback("/{\\w+}/", function ($matches) {
+                $content = $this->renderSection($matches[0]);
+
+                return $content === false ? $matches[0] : $content;
+            }, $this->layout);
+        } else {
+            $content = $this->renderEmpty();
+        }
+        $tag = ArrayHelper::remove($this->options, 'tag', 'div');
+        echo Html::tag($tag, $content, $this->options);
     }
 }
