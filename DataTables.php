@@ -23,7 +23,7 @@ class DataTables extends \yii\grid\GridView
      */
     public function run()
     {
-        $id = $this->options['id'];
+        $id = $this->tableOptions['id'];
         $options = Json::encode($this->getClientOptions());
         $view = $this->getView();
         DataTablesAsset::register($view);
