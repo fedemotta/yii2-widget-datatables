@@ -7,7 +7,6 @@
  */
 namespace fedemotta\datatables;
 
-use yii\base\InvalidConfigException;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
@@ -20,17 +19,33 @@ use yii\helpers\Html;
 class DataTables extends \yii\grid\GridView
 {
     /**
+    * @var array the HTML attributes for the container tag of the datatables view.
+    * The "tag" element specifies the tag name of the container element and defaults to "div".
+    * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+    */
+    public $options = [];
+    
+    /**
+    * @var array the HTML attributes for the datatables table element.
+    * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+    */
+    public $tableOptions = ["class"=>"display","cellspacing"=>"0", "width"=>"100%"];
+    
+    /**
+    * @var array the HTML attributes for the datatables table element.
+    * @see \yii\helpers\Html::renderTagAttributes() for details on how attributes are being rendered.
+    */
+    public $clientOptions = [];
+    
+    
+    /**
      * Runs the widget.
      */
     public function run()
     {
-        if (isset($this->tableOptions['id'])) {
-            $id = $this->tableOptions['id'];
-        } else {
-            throw new InvalidConfigException('No table ID provided.');
-        }
         $options = Json::encode($this->getClientOptions());
         $view = $this->getView();
+        $id = $this->tableOptions['id'];
         DataTablesAsset::register($view);
         $view->registerJs("jQuery('#$id').DataTable($options);");
         
@@ -46,5 +61,35 @@ class DataTables extends \yii\grid\GridView
         }
         $tag = ArrayHelper::remove($this->options, 'tag', 'div');
         echo Html::tag($tag, $content, $this->options);
+    }
+    
+    /**
+     * Initializes the datatables widget
+     */
+    public function init()
+    {
+        parent::init();
+        
+        //disable filter model by grid view
+        $this->filterModel = null;
+        
+        //layout showing only items
+        $this->layout = "{items}";
+        
+        //no grid view sort
+        $this->dataProvider->sort = false;
+        
+        //the table id must be set
+        if (!isset($this->tableOptions['id'])) {
+            $this->tableOptions['id'] = 'datatables_'.$this->getId();
+        }
+    }
+    /**
+     * Returns the options for the datatables view JS widget.
+     * @return array the options
+     */
+    protected function getClientOptions()
+    {
+        return $this->clientOptions;
     }
 }
