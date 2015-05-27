@@ -21,7 +21,7 @@ class DataTablesBootstrapAsset extends AssetBundle
     ];
 
     public $js = [
-        "BS3/assets/css/datatables.js",
+        "BS3/assets/js/datatables.js",
     ];
 
     public $depends = [
