@@ -18,7 +18,8 @@
     "require": {
         "yiisoft/yii2":"*",
         "bower-asset/jquery":">= 1.7.0",
-        "bower-asset/datatables":"*"
+        "bower-asset/datatables":"*",
+        "bower-asset/datatables-bootstrap3":"*"        
     },
     "autoload": {
         "psr-4": {
