@@ -69,7 +69,13 @@ The TableTools plugin is also available. Specify the DOM and the tableTools sett
             ],[
             "sExtends"=> "xls",
             "oSelectorOpts"=> ["page"=> 'current']
-            ]
+            ],[
+            "sExtends"=> "pdf",
+            "sButtonText"=> "Save to PDF"
+            ],[
+            "sExtends"=> "print",
+            "sButtonText"=> "Print"
+            ],
         ]
     ]
 ],
