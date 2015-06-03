@@ -43,10 +43,19 @@ class DataTables extends \yii\grid\GridView
      */
     public function run()
     {
-        $options = Json::encode($this->getClientOptions());
+        $clientOptions = $this->getClientOptions();
+        $options = Json::encode($clientOptions);
         $view = $this->getView();
         $id = $this->tableOptions['id'];
+        
+        //Bootstrap3 Asset by default
         DataTablesBootstrapAsset::register($view);
+        
+        //TableTools Asset if needed
+        if (isset($clientOptions["tableTools"]) || (isset($clientOptions["dom"]) && strpos($clientOptions["dom"], 'T')>=0)){
+            DataTablesTableToolsAsset::register($view);
+        }
+        
         $view->registerJs("jQuery('#$id').DataTable($options);");
         
         //base list view run
