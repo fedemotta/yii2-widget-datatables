@@ -48,6 +48,33 @@ use fedemotta\datatables\DataTables;
     ],
 ]);?>
 ```
+This extension uses the Bootstrap integration plugin to provide a Yii2 style by default.
+
+The TableTools plugin is also available. Specify the DOM and the tableTools settings in the clientOptions array as the following example.
+
+```php
+...
+'clientOptions' => [
+    "info"=>false,
+    "responsive"=>true, 
+    "dom"=> 'lfTrtip',
+    "tableTools"=>[
+        "aButtons"=> [  
+            [
+            "sExtends"=> "copy",
+            "sButtonText"=> "Copy to clipboard"
+            ],[
+            "sExtends"=> "csv",
+            "sButtonText"=> "Save to CSV"
+            ],[
+            "sExtends"=> "xls",
+            "oSelectorOpts"=> ["page"=> 'current']
+            ]
+        ]
+    ]
+],
+...
+```
 
 You can also use DataTables in the JavaScript layer of your application. To achieve this, you need to include DataTables as a dependency of your Asset file.
 
