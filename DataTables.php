@@ -44,7 +44,6 @@ class DataTables extends \yii\grid\GridView
     public function run()
     {
         $clientOptions = $this->getClientOptions();
-        $options = Json::encode($clientOptions);
         $view = $this->getView();
         $id = $this->tableOptions['id'];
         
@@ -53,9 +52,11 @@ class DataTables extends \yii\grid\GridView
         
         //TableTools Asset if needed
         if (isset($clientOptions["tableTools"]) || (isset($clientOptions["dom"]) && strpos($clientOptions["dom"], 'T')>=0)){
-            DataTablesTableToolsAsset::register($view);
+            $tableTools = DataTablesTableToolsAsset::register($view);
+            //SWF copy and download path overwrite
+            $clientOptions["tableTools"]["sSwfPath"] = $tableTools->baseUrl."/swf/copy_csv_xls_pdf.swf";
         }
-        
+        $options = Json::encode($clientOptions);
         $view->registerJs("jQuery('#$id').DataTable($options);");
         
         //base list view run
