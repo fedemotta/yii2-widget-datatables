@@ -74,7 +74,9 @@ class DataTables extends \yii\grid\GridView
     }
     
     /**
-     * Initializes the datatables widget
+     * Initializes the datatables widget disabling some GridView options like 
+     * search, sort and pagination and using DataTables JS functionalities 
+     * instead.
      */
     public function init()
     {
@@ -83,11 +85,14 @@ class DataTables extends \yii\grid\GridView
         //disable filter model by grid view
         $this->filterModel = null;
         
+        //disable sort by grid view
+        $this->dataProvider->sort = false;
+        
+        //disable pagination by grid view
+        $this->dataProvider->pagination = false;
+        
         //layout showing only items
         $this->layout = "{items}";
-        
-        //no grid view sort
-        $this->dataProvider->sort = false;
         
         //the table id must be set
         if (!isset($this->tableOptions['id'])) {
