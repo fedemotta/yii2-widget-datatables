@@ -55,6 +55,7 @@ The TableTools plugin is also available. Specify the DOM and the tableTools sett
 ```php
 ...
 'clientOptions' => [
+    "lengthMenu"=> [[20,-1], [20,Yii::t('app',"All")]],
     "info"=>false,
     "responsive"=>true, 
     "dom"=> 'lfTrtip',
@@ -62,19 +63,19 @@ The TableTools plugin is also available. Specify the DOM and the tableTools sett
         "aButtons"=> [  
             [
             "sExtends"=> "copy",
-            "sButtonText"=> "Copy to clipboard"
+            "sButtonText"=> Yii::t('app',"Copy to clipboard")
             ],[
             "sExtends"=> "csv",
-            "sButtonText"=> "Save to CSV"
+            "sButtonText"=> Yii::t('app',"Save to CSV")
             ],[
             "sExtends"=> "xls",
             "oSelectorOpts"=> ["page"=> 'current']
             ],[
             "sExtends"=> "pdf",
-            "sButtonText"=> "Save to PDF"
+            "sButtonText"=> Yii::t('app',"Save to PDF")
             ],[
             "sExtends"=> "print",
-            "sButtonText"=> "Print"
+            "sButtonText"=> Yii::t('app',"Print")
             ],
         ]
     ]
