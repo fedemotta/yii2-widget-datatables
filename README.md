@@ -9,13 +9,16 @@ Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-Either run
+With Composer installed, you can then install the application using the following commands:
 
-```
-php composer.phar require --prefer-dist fedemotta/yii2-widget-datatables "*"
-```
+    composer global require "fxp/composer-asset-plugin:~1.0.0"
+    composer require --prefer-dist fedemotta/yii2-widget-datatables "*"
 
-or add
+The first command installs the [composer asset plugin](https://github.com/francoispluchino/composer-asset-plugin/)
+which allows managing bower and npm package dependencies through Composer. You only need to run this command
+once for all. The second command installs the datatables widget.
+
+You can also add:
 
 ```
 "fedemotta/yii2-widget-datatables": "*"
