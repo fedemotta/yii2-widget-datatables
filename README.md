@@ -9,7 +9,7 @@ Installation
 
 The preferred way to install this extension is through [composer](http://getcomposer.org/download/).
 
-With Composer installed, you can then install the extenion using the following commands:
+With Composer installed, you can then install the extension using the following commands:
 
     composer global require "fxp/composer-asset-plugin:~1.0.0"
     composer require --prefer-dist fedemotta/yii2-widget-datatables "*"
