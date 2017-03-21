@@ -107,4 +107,14 @@ class DataTables extends \yii\grid\GridView
     {
         return $this->clientOptions;
     }
+    
+    public function renderTableBody()
+    {
+        $models = array_values($this->dataProvider->getModels());
+        if (count($models) === 0) {
+            return "<tbody>\n</tbody>";
+        } else {
+            return parent::renderTableBody();
+        }
+    }
 }
